@@ -5,10 +5,6 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 export class GraphNodeService {
   private option: number;
   private data: BehaviorSubject<any>;
-  private showImage: boolean;
-  private showImageObserver: BehaviorSubject<boolean>;
-  private showText: boolean;
-  private showTextObserver: BehaviorSubject<boolean>;
   private _values: Array<any> = [
     {
       'nodes': [
@@ -2489,12 +2485,6 @@ export class GraphNodeService {
   constructor() {
     this.option = 0;
     this.data = new BehaviorSubject(this._values[this.option]);
-
-    this.showImage = false;
-    this.showImageObserver = new BehaviorSubject(this.showImage);
-
-    this.showText = false;
-    this.showTextObserver = new BehaviorSubject(this.showText);
   }
 
   changeOption() {
@@ -2507,21 +2497,11 @@ export class GraphNodeService {
     return this.data;
   }
 
-  toggleShowImage() {
-    this.showImage = !this.showImage;
-    this.showImageObserver.next(this.showImage);
+  setData(data: any): void {
+    this.data.next(data);
   }
 
-  getShowImage(): BehaviorSubject<boolean> {
-    return this.showImageObserver;
-  }
-
-  toggleShowText() {
-    this.showText = !this.showText;
-    this.showTextObserver.next(this.showText);
-  }
-
-  getShowText(): BehaviorSubject<boolean> {
-    return this.showTextObserver;
+  setNodesAndLinks(nodes: Array<any>, links: Array<any>): void {
+    this.data.next({'nodes': nodes, 'links': links});
   }
 }

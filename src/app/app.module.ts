@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import {ComponentsModule} from './components/components.module';
-import {ServicesModule} from './components/svg-forced/services/services.module';
 import {RouterModule} from '@angular/router';
 import {appRouter} from './app.router';
+import {GraphModule} from './graph/graph.module';
+import {ServicesModule} from './graph/services/services.module';
 
 
 @NgModule({
@@ -16,7 +16,7 @@ import {appRouter} from './app.router';
   imports: [
     appRouter,
     BrowserModule,
-    ComponentsModule,
+    GraphModule,
     RouterModule,
     ServicesModule
   ],

@@ -1,8 +1,9 @@
 import {AfterViewChecked, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild} from '@angular/core';
 import * as d3 from 'd3';
-import {GraphNodeService} from './services/node/graph-node.service';
-import {GraphForceService} from './services/force/graph-force.service';
+import {GraphNodeService} from '../services/node/graph-node.service';
+import {GraphForceService} from '../services/force/graph-force.service';
 import {isNullOrUndefined} from 'util';
+import {GraphService} from '../services/graph/graph.service';
 
 @Component({
   selector: 'app-svg-forced',
@@ -48,6 +49,7 @@ export class SvgForcedComponent implements OnInit, AfterViewChecked, OnChanges {
   initialized = false;
 
   constructor(private forceService: GraphForceService,
+              private graphService: GraphService,
               private nodeService: GraphNodeService) { }
 
   ngOnInit() {
@@ -66,7 +68,7 @@ export class SvgForcedComponent implements OnInit, AfterViewChecked, OnChanges {
     this.forceService.statusForce().subscribe(value => this.toggleForces(value));
 
     // permite realizar cambios entre imagen y circulo
-    this.nodeService.getShowImage().subscribe(value => {
+    this.graphService.getShowImage().subscribe(value => {
       if (value !== this.showImage) {
         this.showImage = value;
         if (this.showImage) {
@@ -81,7 +83,7 @@ export class SvgForcedComponent implements OnInit, AfterViewChecked, OnChanges {
     });
 
     // observa cambios en el estatus del valor de visualización de la capa de texto
-    this.nodeService.getShowText().subscribe(value => {
+    this.graphService.getShowText().subscribe(value => {
       if (value !== this.showText) {
         this.showText = value;
         if (this.showText) {
