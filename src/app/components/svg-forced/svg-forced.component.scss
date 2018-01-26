@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  .force-directed-chart {
+    border: 1px solid royalblue;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin: 5px;
+  }
+}
