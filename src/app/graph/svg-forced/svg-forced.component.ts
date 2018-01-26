@@ -310,7 +310,7 @@ export class SvgForcedComponent implements OnInit, AfterViewChecked, OnChanges {
 
   // configura los valores de las fuerzas utilizadas en la simulación
   private configureForces() {
-    this.linkForce = d3.forceLink().id((node: any) => node.id);
+    this.linkForce = d3.forceLink().id((node: any) => node.id).distance(25);
     this.collideForce = d3.forceCollide().radius(4);
     this.chargeForce = d3.forceManyBody().strength(-100);
     this.centerFoce = d3.forceCenter().x(this.width / 2).y(this.height / 2);
